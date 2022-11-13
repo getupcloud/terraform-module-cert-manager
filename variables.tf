@@ -15,7 +15,7 @@ variable "dns_provider" {
 
   validation {
     condition     = contains(["", "aws"], var.dns_provider)
-    error_message = "Invalid provider name: ${var.dns_provider}"
+    error_message = "Invalid dns_provider name"
   }
 }
 
