@@ -8,18 +8,17 @@ variable "customer_name" {
   type        = string
 }
 
-variable "dns_provider" {
-  description = "Provider to give control to cert-manager"
+variable "provider_name" {
+  description = "Provider where to configure cert-manager resources"
   type        = string
-  default     = ""
 
   validation {
-    condition     = contains(["", "aws"], var.dns_provider)
-    error_message = "Invalid dns_provider name."
+    condition     = contains(["aws"], var.provider_name)
+    error_message = "Invalid provider name."
   }
 }
 
-variable "dns_provider_aws" {
+variable "provider_aws" {
   description = "Config to Route53"
   type = object({
     hosted_zone_ids : list(string)

@@ -1,4 +1,4 @@
 output "config" {
   description = "DNS Provider config"
-  value       = lookup(local.output, var.dns_provider)
+  value       = lookup(local.output, var.provider_name)
 }
