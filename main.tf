@@ -1,7 +1,7 @@
 locals {
   name_prefix = substr("${var.cluster_name}-certmanager", 0, 32)
   output = {
-    aws : var.provider_name == "aws" ? module.aws[0] : tomap({})
+    aws : (var.provider_name == "aws" && local.has_aws_hosted_zone_id) ? module.aws[0] : tomap({})
     #    aks : var.provider_name == "aks" ? module.aks[0] : tomap({})
   }
 
