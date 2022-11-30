@@ -20,6 +20,12 @@ variable "provider_name" {
 
 variable "provider_aws" {
   description = "Config to Route53"
+  type        = any
+  default     = {}
+}
+
+variable "provider_aws_defaults" {
+  description = "Config to Route53"
   type = object({
     hosted_zone_ids : list(string)
     cluster_oidc_issuer_url : string
