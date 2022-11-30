@@ -5,10 +5,11 @@ locals {
     #    aks : var.provider_name == "aks" ? module.aks[0] : tomap({})
   }
 
+  has_aws_hosted_zone_id = try(var.provider_aws.hosted_zone_ids, var.provider_aws_defaults.hosted_zone_ids, "") != ""
 }
 
 module "aws" {
-  count  = var.provider_name == "aws" ? 1 : 0
+  count  = (var.provider_name == "aws" && local.has_aws_hosted_zone_id) ? 1 : 0
   source = "./aws"
 
   cluster_name              = var.cluster_name
