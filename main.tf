@@ -5,7 +5,7 @@ locals {
     #    aks : var.provider_name == "aks" ? module.aks[0] : tomap({})
   }
 
-  has_aws_hosted_zone_id = try(var.provider_aws.hosted_zone_ids, var.provider_aws_defaults.hosted_zone_ids, "") != ""
+  has_aws_hosted_zone_id = length(try(var.provider_aws.hosted_zone_ids, var.provider_aws_defaults.hosted_zone_ids, [])) > 0
 }
 
 module "aws" {
