@@ -53,7 +53,7 @@ module "irsa_aws_certmanager" {
   create_role                   = true
   role_name                     = local.name_prefix
   provider_url                  = var.cluster_oidc_issuer_url
-  role_policy_arns              = length(var.hosted_zone_ids) > 0 ? [aws_iam_policy.aws_certmanager[0].arn] : null
+  role_policy_arns              = length(var.hosted_zone_ids) > 0 ? [aws_iam_policy.aws_certmanager[0].arn] : []
   oidc_fully_qualified_subjects = ["system:serviceaccount:${var.service_account_namespace}:${var.service_account_name}"]
   tags                          = var.tags
 }
